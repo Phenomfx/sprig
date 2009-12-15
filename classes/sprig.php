@@ -1048,7 +1048,13 @@ abstract class Sprig {
 				{
 					$relations[$name] = $value;
 				}
-
+				
+				// If auto field is editable and value provided, use value
+				if($field instanceof Sprig_Field_Auto AND $field->editable AND $value)
+				{
+					$values[$field->column] = $value;
+				}
+				
 				// Skip all auto-increment fields or where in_db is false
 				continue;
 			}
